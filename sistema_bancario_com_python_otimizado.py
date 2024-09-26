@@ -17,7 +17,7 @@
 
     # 6. Pode ser criado uma função adicional: lista de contas
 
-    # 7. cadastrar_novo_cliente -> O programa deve armazenar os usuários em uma lista[]. Um usuário é composto por: nome, data de nascimento, cpf e endereço. O endereço é uma string (str) com o formato: logradouro - bairro - cidade/sigla. Deve ser armazenado somente os númeoros do CPF. Não podemos cadastrar 2 usuários com o mesmo CPF.
+    # 7. cadastrar_novo_cliente -> O programa deve armazenar os clientes em uma lista[]. Um cliente é composto por: nome, data de nascimento, cpf e endereço. O endereço é uma string (str) com o formato: logradouro - bairro - cidade/sigla. Deve ser armazenado somente os númeoros do CPF. Não podemos cadastrar 2 clientes com o mesmo CPF.
 
     # 8. criar_conta_corrente -> O programa deve armazenar contas em uma lista[]. Uma conta é composta por: agência, número da conta e cliente. O número da conta é sequencial, iniciado por 1. O número da agência é fixo "0001". O cliente pode ter mais de uma conta, mas uma conta pertence a somente um cliente.
     
@@ -26,6 +26,7 @@
 ############################################################
 # Importação de textwrap para facilitar a exibição do menu de opções
 import textwrap
+
 
 # Função responsável por exibir o menu de opções do sistema bancário.
 def menu():
@@ -88,7 +89,7 @@ def cadastrar_novo_cliente(clientes):
     cliente = filtrar_clientes(cpf, clientes)  # Verifica se o cliente já existe.
 
     if cliente:
-        print("\nJá existe usuário com esse CPF!")  # Verifica se o CPF já foi cadastrado.
+        print("\nJá existe cliente com esse CPF!")  # Verifica se o CPF já foi cadastrado.
         return
 
     # Coleta as informações do cliente e o adiciona à lista de clientes.
@@ -98,7 +99,7 @@ def cadastrar_novo_cliente(clientes):
 
     clientes.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
 
-    print("=== Usuário criado com sucesso! ===")
+    print("=== Cliente criado com sucesso! ===")
 
 # Função que filtra os clientes por CPF.
 def filtrar_clientes(cpf, clientes):
@@ -107,14 +108,14 @@ def filtrar_clientes(cpf, clientes):
 
 # Função para criar contas correntes, vinculando ao cliente.
 def criar_conta_corrente(agencia, numero_da_conta, clientes):
-    cpf = input("Informe o CPF do usuário: ")
+    cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_clientes(cpf, clientes)  # Busca o cliente pelo CPF.
 
     if cliente:
         print("\n=== Conta criada com sucesso! ===")
         return {"agencia": agencia, "numero_conta": numero_da_conta, "cliente": cliente}  # Cria a conta vinculada ao cliente.
 
-    print("\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@")
+    print("\n Cliente não encontrado, fluxo de criação de conta encerrado!")
 
 # Função que exibe a lista de contas correntes cadastradas.
 def criar_lista_contas(contas):
